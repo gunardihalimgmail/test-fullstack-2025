@@ -16,7 +16,7 @@ import (
 type User struct {
 	RealName string `json:"realname"`
 	Email    string `json:"email"`
-	Password string `json:"password"` // password dalam bentuk hash SHA1
+	Password string `json:"password"`
 }
 
 type LoginReq struct {
