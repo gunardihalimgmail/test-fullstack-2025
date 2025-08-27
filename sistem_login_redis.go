@@ -19,17 +19,17 @@ type User struct {
 	Password string `json:"password"` // password dalam bentuk hash SHA1
 }
 
-type LoginRequest struct {
+type LoginReq struct {
 	Username string `json:"username"`
 	Password string `json:"password"`
 }
 
-// Global redis client
+
 var rdb *redis.Client
 var ctx = context.Background()
 
 func loginHandler(c *fiber.Ctx) error {
-	var req LoginRequest
+	var req LoginReq
 	if err := c.BodyParser(&req); err != nil {
 		return c.Status(fiber.StatusBadRequest).JSON(fiber.Map{
 			"error": "Invalid request",
@@ -69,7 +69,7 @@ func loginHandler(c *fiber.Ctx) error {
 }
 
 func main() {
-	// Init redis
+	
 	rdb = redis.NewClient(&redis.Options{
 		Addr: "localhost:6379", // sesuaikan
 		DB:   0,
@@ -77,7 +77,6 @@ func main() {
 
 	app := fiber.New()
 
-	// Endpoint login
 	app.Post("/login", loginHandler)
 
 	log.Fatal(app.Listen(":3000"))
