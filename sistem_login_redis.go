@@ -71,7 +71,7 @@ func loginHandler(c *fiber.Ctx) error {
 func main() {
 	
 	rdb = redis.NewClient(&redis.Options{
-		Addr: "localhost:6379", // sesuaikan
+		Addr: "localhost:6379",
 		DB:   0,
 	})
 
